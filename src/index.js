@@ -16,6 +16,23 @@ dotenv.config({
 
 
 connectDB()
+// as db connection is done using asyncronous method
+// ascn method jb bhe complete hora h
+// it return the promise
+.then(() => {
+    // ab server start krenge
+    // but abhi application ne us db ka use krke listen krna start nhi kiya tha
+    app.listen(process.env.PORT || 8000, () => {
+        console.log(`⚙️ Server is running at port : ${process.env.PORT}`);
+    })
+})
+// agr db connection fail hua h toh below
+.catch((err) => {
+    console.log("MONGODB CONNECTION FAILED !!! ", err);
+    
+})
+
+// neeche jo app.on h vo bhe kr skte h
 
 
 
@@ -46,3 +63,8 @@ const app = express()
     }
 })
 */
+
+
+// middleware most of the time app.use krke use krte h
+// app.use for middleware and config setting
+// cors is Cross-Origin Resource Sharing (CORS)
